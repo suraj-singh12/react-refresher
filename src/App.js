@@ -55,3 +55,9 @@ const App = () => {
 };
 
 export default App;
+
+// useReducer: useful when state transitions are complex and involve multiple sub-states
+// It encourages organizing the logic in a reducer function, making it easier to handle different 
+// actions and their corresponding state changes.
+
+
