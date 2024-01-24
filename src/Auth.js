@@ -30,7 +30,7 @@ const Auth = () => {
             <>
                 <form onSubmit={(e) => handleSubmit(e)}
                     style={{margin: '2rem'}}>
-                    <input type="text" value={usrName} onChange={(e) => setUsrName(e.target.value)} />
+                    <input type="text" placeholder="Enter userName" value={usrName} onChange={(e) => setUsrName(e.target.value)} />
                     <button type="submit"> Login </button>
                 </form>
             </>

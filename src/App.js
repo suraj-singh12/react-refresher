@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React, { useContext, useReducer, useRef, useState, useEffect } from 'react';
 import './App.css';
 import Todo from './Todo';
 import { userContext } from './Auth';
@@ -34,17 +34,27 @@ const App = () => {
     const [todos, dispatch] = useReducer(reducer, []);
     const [name, setName] = useState('');
     const { usrName, logout } = useContext(userContext);
+    const inputRef = useRef();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(name === '') return;
         dispatch({type: ACTIONS.ADD_TODO, payload: {name: name}});
         setName('');
     }
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
     return (
         <div className={"main"}>
             <form onSubmit={handleSubmit}>
-                <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                <input ref={inputRef} 
+                    name="name" type="text" value={name} 
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter todo item" 
+                />
             </form>
             <button onClick={() => logout()}>Logout {usrName} user</button>
             {
